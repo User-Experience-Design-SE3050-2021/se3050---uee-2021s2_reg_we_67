@@ -111,7 +111,7 @@ class _OtpState extends State<Otp> {
           ),
           SizedBox(height: 25),
           Container(
-            margin: EdgeInsets.only(top: 6),
+            margin: EdgeInsets.only(top: 8),
             child: ElevatedButton(
               style: ElevatedButton.styleFrom(
                 elevation: 3,
@@ -119,7 +119,7 @@ class _OtpState extends State<Otp> {
                   borderRadius: BorderRadius.circular(20),
                 ),
                 padding:
-                    EdgeInsets.symmetric(horizontal: 100.0, vertical: 12.0),
+                    EdgeInsets.symmetric(horizontal: 110.0, vertical: 18.0),
 
                 primary: Colors.red.shade600, // background
                 onPrimary: Colors.white, // foreground
@@ -129,15 +129,17 @@ class _OtpState extends State<Otp> {
             ),
           ),
           Container(
-            margin: EdgeInsets.only(top: 44, left: 90, right: 21.5),
+            margin: EdgeInsets.only(top: 24, left: 90, right: 21.5),
             child: Row(
               children: <Widget>[
                 Container(
                   child: Center(
                     child: Text(
-                      "Didn't receive an OTP?",
-                      style:
-                          TextStyle(fontWeight: FontWeight.bold, fontSize: 10),
+                      "Didn't Receive?",
+                      style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 12,
+                          color: Colors.grey[500]),
                     ),
                   ),
                 ),
@@ -147,11 +149,11 @@ class _OtpState extends State<Otp> {
                   child: Center(
                     child: RichText(
                       text: TextSpan(
-                        text: 'Resend OTP',
+                        text: 'Click Here',
                         style: TextStyle(
                             fontWeight: FontWeight.bold,
-                            fontSize: 10,
-                            color: Color.fromARGB(255, 255, 3, 69)),
+                            fontSize: 12,
+                            color: Colors.black),
                       ),
                     ),
                   ),

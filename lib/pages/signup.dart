@@ -18,10 +18,10 @@ class _SignUpPageState extends State<SignUpPage> {
         body: SafeArea(
           child: Column(children: [
             Container(
-              child: Text("Sign Up",
+              child: Text("Sign up",
                   style: TextStyle(
                     color: Colors.red.shade600,
-                    fontSize: 15,
+                    fontSize: 14,
                   )),
               margin: EdgeInsets.only(top: 25, left: 280),
             ),
@@ -168,7 +168,7 @@ class _SignUpPageState extends State<SignUpPage> {
                           "Already have an account? ",
                           style: TextStyle(
                             color: Colors.black,
-                            fontSize: 15,
+                            fontSize: 13,
                           ),
                         ),
                         InkWell(
@@ -176,7 +176,7 @@ class _SignUpPageState extends State<SignUpPage> {
                               "Sign in",
                               style: TextStyle(
                                 color: Colors.red.shade600,
-                                fontSize: 15,
+                                fontSize: 13,
                               ),
                             ),
                             onTap: () {

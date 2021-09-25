@@ -18,8 +18,16 @@ class _PhoneverifyState extends State<Phoneverify> {
       body: SafeArea(
         child: Column(children: [
           Container(
+            child: Text("Sign up",
+                style: TextStyle(
+                  color: Colors.red.shade600,
+                  fontSize: 14,
+                )),
+            margin: EdgeInsets.only(top: 25, left: 280),
+          ),
+          Container(
             width: double.infinity,
-            padding: EdgeInsets.symmetric(horizontal: 20),
+            padding: EdgeInsets.symmetric(horizontal: 20, vertical: 20),
             margin: EdgeInsets.symmetric(horizontal: 20),
             child: Column(
               children: <Widget>[
@@ -47,7 +55,7 @@ class _PhoneverifyState extends State<Phoneverify> {
               ],
             ),
           ),
-          SizedBox(height: 150),
+          SizedBox(height: 80),
           Container(
             margin: EdgeInsets.only(right: 170),
             child: Text(
@@ -65,12 +73,11 @@ class _PhoneverifyState extends State<Phoneverify> {
               child: IntlPhoneField(
                 decoration: InputDecoration(
                     hintStyle: TextStyle(fontSize: 12, color: Colors.grey),
-                    focusedBorder: UnderlineInputBorder(
-                        borderSide:
-                            BorderSide(color: Color.fromARGB(255, 255, 3, 69))),
                     enabledBorder: UnderlineInputBorder(
-                      borderSide:
-                          BorderSide(color: Color.fromARGB(255, 255, 3, 69)),
+                        borderSide:
+                            BorderSide(color: Colors.grey.withOpacity(0.2))),
+                    focusedBorder: UnderlineInputBorder(
+                      borderSide: BorderSide(color: Colors.red.shade600),
                     )),
 
                 initialCountryCode: 'SL',
@@ -92,8 +99,9 @@ class _PhoneverifyState extends State<Phoneverify> {
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(20),
                 ),
+
                 padding:
-                    EdgeInsets.symmetric(horizontal: 100.0, vertical: 12.0),
+                    EdgeInsets.symmetric(horizontal: 110.0, vertical: 15.0),
 
                 primary: Colors.red.shade600, // background
                 onPrimary: Colors.white, // foreground
@@ -102,7 +110,7 @@ class _PhoneverifyState extends State<Phoneverify> {
                 Navigator.of(context).push(MaterialPageRoute(
                     builder: (context) => Otp(_controller.text)));
               },
-              child: Text('SIGN IN'),
+              child: Text('CONTINUE'),
             ),
           ),
         ]),
