@@ -15,7 +15,7 @@ class _SignUpPageState extends State<SignUpPage> {
     return Scaffold(
         key: scaffoldKey,
         backgroundColor: Colors.white,
-        body: SingleChildScrollView(
+        body: SafeArea(
           child: Column(children: [
             Container(
               child: Text("Sign Up",
@@ -141,7 +141,7 @@ class _SignUpPageState extends State<SignUpPage> {
                                   borderRadius: BorderRadius.circular(20),
                                 ),
                                 padding: EdgeInsets.symmetric(
-                                    horizontal: 110.0, vertical: 12.0),
+                                    horizontal: 100.0, vertical: 12.0),
 
                                 primary: Colors.red.shade600, // background
                                 onPrimary: Colors.white, // foreground

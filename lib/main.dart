@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:uee_souji/pages/signup.dart';
+import 'package:uee_souji/pages/signin.dart';
+
 
 void main() {
   runApp(MyApp());
@@ -15,7 +16,7 @@ class MyApp extends StatelessWidget {
           debugShowCheckedModeBanner: false,
           title: 'UEE',
           theme: ThemeData.light(),
-      home: SignUpPage(),
+      home: SignInPage(),
     );
   }
 }

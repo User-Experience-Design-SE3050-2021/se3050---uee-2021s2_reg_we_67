@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:uee_souji/pages/phonenumberverification.dart';
 
 class SignInPage extends StatefulWidget {
   @override
@@ -12,18 +13,30 @@ class _SignInPageState extends State<SignInPage> {
   // ignore: non_constant_identifier_names
   Widget build(BuildContext context) {
     return Scaffold(
-      key: scaffoldKey,
-      backgroundColor: Colors.white,
-      body: SingleChildScrollView(
-        child: Column(
+        key: scaffoldKey,
+        backgroundColor: Colors.white,
+        body: SafeArea(
+            child: Column(
           children: <Widget>[
-            SizedBox(height: 50),
-            Stack(
-              children: <Widget>[
+            Container(
+              width: MediaQuery.of(context).size.width,
+              height: 250,
+              color: Colors.brown[400],
+              child: Stack(children: [
+                Align(
+                  alignment: Alignment.topCenter,
+                  child: Container(
+                    child: Image(
+                      image: AssetImage('assets/images/logos.png'),
+                      width: 180,
+                      height: 200,
+                    ),
+                  ),
+                ),
+                SizedBox(height: 50),
                 Container(
                   width: double.infinity,
-                  padding: EdgeInsets.symmetric(vertical: 30, horizontal: 20),
-                  margin: EdgeInsets.symmetric(vertical: 85, horizontal: 5),
+                  padding: EdgeInsets.symmetric(vertical: 15, horizontal: 25),
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(50),
                     color: Colors.white,
@@ -37,7 +50,6 @@ class _SignInPageState extends State<SignInPage> {
                   child: Form(
                     key: globalFormKey,
                     child: Column(children: <Widget>[
-                      SizedBox(height: 25),
                       Text(
                         "Welcome",
                         style: TextStyle(
@@ -51,7 +63,7 @@ class _SignInPageState extends State<SignInPage> {
                         "great shopping deals",
                         style: TextStyle(fontSize: 15),
                       ),
-                      SizedBox(height: 30),
+                      SizedBox(height: 20),
                       new TextFormField(
                         keyboardType: TextInputType.emailAddress,
                         decoration: new InputDecoration(
@@ -61,13 +73,9 @@ class _SignInPageState extends State<SignInPage> {
                                   color: Colors.red.shade600.withOpacity(0.2))),
                           focusedBorder: UnderlineInputBorder(
                               borderSide: BorderSide(color: Colors.white)),
-                          prefixIcon: Icon(
-                            Icons.email,
-                            color: Colors.red.shade600,
-                          ),
                         ),
                       ),
-                      SizedBox(height: 20),
+                      SizedBox(height: 10),
                       new TextFormField(
                         style: TextStyle(color: Colors.white),
                         keyboardType: TextInputType.text,
@@ -79,10 +87,6 @@ class _SignInPageState extends State<SignInPage> {
                                   color: Colors.red.shade600.withOpacity(0.2))),
                           focusedBorder: UnderlineInputBorder(
                               borderSide: BorderSide(color: Colors.white)),
-                          prefixIcon: Icon(
-                            Icons.lock,
-                            color: Colors.red[600],
-                          ),
                           suffixIcon: IconButton(
                             onPressed: () {
                               setState(() {
@@ -96,7 +100,7 @@ class _SignInPageState extends State<SignInPage> {
                           ),
                         ),
                       ),
-                      SizedBox(height: 30),
+                      SizedBox(height: 20),
                       ElevatedButton(
                         style: ElevatedButton.styleFrom(
                           elevation: 3,
@@ -109,17 +113,21 @@ class _SignInPageState extends State<SignInPage> {
                           primary: Colors.red[600], // background
                           onPrimary: Colors.white, // foreground
                         ),
-                        onPressed: () {},
+                        onPressed: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => Phoneverify()),
+                          );
+                        },
                         child: Text('SIGN IN'),
                       ),
                     ]),
                   ),
                 )
-              ],
+              ]),
             ),
           ],
-        ),
-      ),
-    );
+        )));
   }
 }
