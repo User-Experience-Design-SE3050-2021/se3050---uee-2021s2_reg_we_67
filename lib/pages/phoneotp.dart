@@ -153,7 +153,7 @@ class _OtpState extends State<Otp> {
                         style: TextStyle(
                             fontWeight: FontWeight.bold,
                             fontSize: 12,
-                            color: Colors.red[500]),
+                            color: Colors.red.shade600),
                       ),
                     ),
                   ),
