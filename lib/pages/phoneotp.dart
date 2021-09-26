@@ -149,11 +149,11 @@ class _OtpState extends State<Otp> {
                   child: Center(
                     child: RichText(
                       text: TextSpan(
-                        text: 'Click Here',
+                        text: 'Resend OTP',
                         style: TextStyle(
                             fontWeight: FontWeight.bold,
                             fontSize: 12,
-                            color: Colors.black),
+                            color: Colors.red[500]),
                       ),
                     ),
                   ),
