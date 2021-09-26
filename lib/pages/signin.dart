@@ -79,6 +79,7 @@ class _SignInPageState extends State<SignInPage> {
                   ),
                   SizedBox(height: 20),
                   new TextFormField(
+                    style: TextStyle(color: Colors.black),
                     keyboardType: TextInputType.emailAddress,
                     cursorColor: Colors.black,
                     decoration: new InputDecoration(
@@ -92,7 +93,7 @@ class _SignInPageState extends State<SignInPage> {
                   ),
                   SizedBox(height: 10),
                   new TextFormField(
-                    style: TextStyle(color: Colors.white),
+                    style: TextStyle(color: Colors.black),
                     keyboardType: TextInputType.text,
                     cursorColor: Colors.black,
                     obscureText: hidePassword,

@@ -69,6 +69,7 @@ class _SignUpPageState extends State<SignUpPage> {
                               ),
                             ),
                             new TextFormField(
+                              style: TextStyle(color: Colors.black),
                               keyboardType: TextInputType.name,
                               cursorColor: Colors.black,
                               decoration: new InputDecoration(
@@ -89,6 +90,7 @@ class _SignUpPageState extends State<SignUpPage> {
                               ),
                             ),
                             new TextFormField(
+                              style: TextStyle(color: Colors.black),
                               keyboardType: TextInputType.emailAddress,
                               cursorColor: Colors.black,
                               decoration: new InputDecoration(
