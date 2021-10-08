@@ -69,7 +69,7 @@ class _SignUpPageState extends State<SignUpPage> {
                               color: Colors.white, size: 90),
                         ),
                       ),
-                      SizedBox(height: 20),
+                      SizedBox(height: 5),
                       Column(
                           mainAxisAlignment: MainAxisAlignment.start,
                           mainAxisSize: MainAxisSize.min,
@@ -103,7 +103,7 @@ class _SignUpPageState extends State<SignUpPage> {
                                         BorderSide(color: Colors.red.shade600)),
                               ),
                             ),
-                            SizedBox(height: 10),
+                            SizedBox(height: 8),
                             Text(
                               "Email",
                               style: TextStyle(
@@ -132,7 +132,7 @@ class _SignUpPageState extends State<SignUpPage> {
                                         BorderSide(color: Colors.red.shade600)),
                               ),
                             ),
-                            SizedBox(height: 10),
+                            SizedBox(height: 8),
                             Text(
                               "Password",
                               style: TextStyle(
@@ -173,7 +173,7 @@ class _SignUpPageState extends State<SignUpPage> {
                                 ),
                               ),
                             ),
-                            SizedBox(height: 40),
+                            SizedBox(height: 8),
                             ElevatedButton(
                               style: ElevatedButton.styleFrom(
                                 elevation: 3,
@@ -222,7 +222,7 @@ class _SignUpPageState extends State<SignUpPage> {
                     ]),
                   ),
                 ),
-                SizedBox(height: 30),
+                SizedBox(height: 10),
                 Text(message),
                 Container(
                   child: Row(

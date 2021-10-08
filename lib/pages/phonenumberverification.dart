@@ -71,6 +71,13 @@ class _PhoneverifyState extends State<Phoneverify> {
               padding:
                   const EdgeInsets.symmetric(vertical: 20.0, horizontal: 20.0),
               child: IntlPhoneField(
+                validator: (value) {
+                  if (value!.isEmpty) {
+                    return 'Phone number cannot be empty';
+                  }
+                  return null;
+                },
+                keyboardType: TextInputType.number,
                 decoration: InputDecoration(
                     hintStyle: TextStyle(fontSize: 12, color: Colors.grey),
                     enabledBorder: UnderlineInputBorder(
