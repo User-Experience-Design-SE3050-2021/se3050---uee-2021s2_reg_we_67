@@ -31,6 +31,7 @@ dependencies:
   intl_phone_field: ^2.1.0
   flutter_signin_button: ^2.0.0
   http: ^0.13.3
+  flutter_facebook_login: ^3.0.0
   
 
 dev_dependencies:
