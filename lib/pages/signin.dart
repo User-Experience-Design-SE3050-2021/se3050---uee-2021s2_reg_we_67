@@ -164,23 +164,23 @@ class _SignInPageState extends State<SignInPage> {
                       setState(() {
                         message = 'Please wait...';
                       });
-                      var rsp = await login(email, password);
-                      print(rsp);
-                      if (rsp.containsKey('status')) {
+                      var response = await login(email, password);
+                      print(response);
+                      if (response.containsKey('status')) {
                         setState(() {
-                          message = rsp['status'];
+                          message = response['status'];
                         });
-                        if (rsp['status'] == 1) {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => Phoneverify()),
-                          );
+                        if (response['status'] == 0) {
+                          setState(() {
+                            message = 'Login Failed';
+                          });
                         }
                       } else {
-                        setState(() {
-                          message = 'Login Failed';
-                        });
+                        /* Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => HomePAge()),
+                        ); */
                       }
                     }
                   },

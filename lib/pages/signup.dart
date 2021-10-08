@@ -69,7 +69,7 @@ class _SignUpPageState extends State<SignUpPage> {
                               color: Colors.white, size: 90),
                         ),
                       ),
-                      SizedBox(height: 5),
+                      SizedBox(height: 20),
                       Column(
                           mainAxisAlignment: MainAxisAlignment.start,
                           mainAxisSize: MainAxisSize.min,
@@ -103,7 +103,7 @@ class _SignUpPageState extends State<SignUpPage> {
                                         BorderSide(color: Colors.red.shade600)),
                               ),
                             ),
-                            SizedBox(height: 8),
+                            SizedBox(height: 10),
                             Text(
                               "Email",
                               style: TextStyle(
@@ -132,7 +132,7 @@ class _SignUpPageState extends State<SignUpPage> {
                                         BorderSide(color: Colors.red.shade600)),
                               ),
                             ),
-                            SizedBox(height: 8),
+                            SizedBox(height: 10),
                             Text(
                               "Password",
                               style: TextStyle(
@@ -173,7 +173,7 @@ class _SignUpPageState extends State<SignUpPage> {
                                 ),
                               ),
                             ),
-                            SizedBox(height: 8),
+                            SizedBox(height: 10),
                             ElevatedButton(
                               style: ElevatedButton.styleFrom(
                                 elevation: 3,
@@ -195,24 +195,24 @@ class _SignUpPageState extends State<SignUpPage> {
                                   setState(() {
                                     message = 'Please wait...';
                                   });
-                                  var rsp =
+                                  var response =
                                       await register(username, email, password);
-                                  print(rsp);
-                                  if (rsp.containsKey('status')) {
+                                  print(response);
+                                  if (response.containsKey('status')) {
                                     setState(() {
-                                      message = rsp['status'];
+                                      message = response['status'];
                                     });
-                                    if (rsp['status'] == 1) {
-                                      Navigator.push(
-                                        context,
-                                        MaterialPageRoute(
-                                            builder: (context) => SignInPage()),
-                                      );
+                                    if (response['status'] == 0) {
+                                      setState(() {
+                                        message = 'Registration Failed';
+                                      });
                                     }
                                   } else {
-                                    setState(() {
-                                      message = 'Registration Failed';
-                                    });
+                                    Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) => SignInPage()),
+                                    );
                                   }
                                 }
                               },
