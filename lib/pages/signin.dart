@@ -3,6 +3,7 @@ import 'package:flutter_signin_button/button_view.dart';
 import 'package:flutter_signin_button/flutter_signin_button.dart';
 import 'package:uee_souji/pages/phonenumberverification.dart';
 import 'package:uee_souji/pages/signup.dart';
+import 'package:uee_souji/service/user_login_service.dart';
 
 class SignInPage extends StatefulWidget {
   @override
@@ -13,6 +14,15 @@ class _SignInPageState extends State<SignInPage> {
   bool hidePassword = true;
   GlobalKey<FormState> globalFormKey = GlobalKey<FormState>();
   final scaffoldKey = GlobalKey<ScaffoldState>();
+  final emailController = TextEditingController();
+  final passwordController = TextEditingController();
+  String message = '';
+  @override
+  void dispose() {
+    emailController.dispose();
+    passwordController.dispose();
+    super.dispose();
+  }
 
   void _showButtonPressDialog(BuildContext context, String provider) {
     // ignore: deprecated_member_use
@@ -82,6 +92,14 @@ class _SignInPageState extends State<SignInPage> {
                     style: TextStyle(color: Colors.black),
                     keyboardType: TextInputType.emailAddress,
                     cursorColor: Colors.black,
+                    /*  onSaved */
+                    controller: emailController,
+                    validator: (value) {
+                      if (value!.isEmpty) {
+                        return 'Email Address cannot be empty';
+                      }
+                      return null;
+                    },
                     decoration: new InputDecoration(
                       hintText: "Email Address",
                       enabledBorder: UnderlineInputBorder(
@@ -97,6 +115,14 @@ class _SignInPageState extends State<SignInPage> {
                     keyboardType: TextInputType.text,
                     cursorColor: Colors.black,
                     obscureText: hidePassword,
+                    /*  onSaved */
+                    controller: passwordController,
+                    validator: (value) {
+                      if (value!.length < 6) {
+                        return 'Password should be more than 6 characters';
+                      }
+                      return null;
+                    },
                     decoration: new InputDecoration(
                       hintText: "Password",
                       enabledBorder: UnderlineInputBorder(
@@ -130,13 +156,39 @@ class _SignInPageState extends State<SignInPage> {
                       primary: Colors.red[600], // background
                       onPrimary: Colors.white, // foreground
                     ),
-                    onPressed: () {},
+                    onPressed: () async {
+                      if (globalFormKey.currentState!.validate()) {
+                        var email = emailController.text;
+                        var password = passwordController.text;
+                        setState(() {
+                          message = 'Please wait...';
+                        });
+                        var rsp = await login(email, password);
+                        print(rsp);
+                        if (rsp.containsKey('status')) {
+                          setState(() {
+                            message = rsp['status'];
+                          });
+                          if (rsp['status'] == 1) {
+                             /* Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => HomePage()),
+                  ); */
+                          }
+                        } else {
+                          setState(() {
+                            message = 'Login Failed';
+                          });
+                        }
+                      }
+                    },
                     child: Text('SIGN IN'),
                   ),
                 ]),
               ),
             ),
             SizedBox(height: 15),
+            Text(message),
             Text(
               '- OR -',
               style: TextStyle(fontSize: 14, color: Colors.grey),
@@ -199,7 +251,7 @@ class _SignInPageState extends State<SignInPage> {
                 padding: EdgeInsets.symmetric(horizontal: 42.0, vertical: 1.0),
               ),
             ),
-            SizedBox(height: 15),
+            SizedBox(height: 18),
             Container(
               child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,

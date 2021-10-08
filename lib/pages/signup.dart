@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:uee_souji/pages/signin.dart';
+import 'package:uee_souji/service/user_register_service.dart';
 
 class SignUpPage extends StatefulWidget {
   @override
@@ -10,6 +11,19 @@ class _SignUpPageState extends State<SignUpPage> {
   bool hidePassword = true;
   GlobalKey<FormState> globalFormKey = GlobalKey<FormState>();
   final scaffoldKey = GlobalKey<ScaffoldState>();
+  final unameController = TextEditingController();
+  final emailController = TextEditingController();
+  final passwordController = TextEditingController();
+  String message = '';
+
+  @override
+  void dispose() {
+    unameController.dispose();
+    emailController.dispose();
+    passwordController.dispose();
+    super.dispose();
+  }
+
   // ignore: non_constant_identifier_names
   Widget build(BuildContext context) {
     return Scaffold(
@@ -72,6 +86,14 @@ class _SignUpPageState extends State<SignUpPage> {
                               style: TextStyle(color: Colors.black),
                               keyboardType: TextInputType.name,
                               cursorColor: Colors.black,
+                              /*  onSaved */
+                              controller: unameController,
+                              validator: (value) {
+                                if (value!.isEmpty) {
+                                  return 'Username cannot be empty';
+                                }
+                                return null;
+                              },
                               decoration: new InputDecoration(
                                 enabledBorder: UnderlineInputBorder(
                                     borderSide: BorderSide(
@@ -93,6 +115,14 @@ class _SignUpPageState extends State<SignUpPage> {
                               style: TextStyle(color: Colors.black),
                               keyboardType: TextInputType.emailAddress,
                               cursorColor: Colors.black,
+                              /*  onSaved */
+                              controller: emailController,
+                              validator: (value) {
+                                if (value!.isEmpty) {
+                                  return 'Email Address cannot be empty';
+                                }
+                                return null;
+                              },
                               decoration: new InputDecoration(
                                 enabledBorder: UnderlineInputBorder(
                                     borderSide: BorderSide(
@@ -115,6 +145,14 @@ class _SignUpPageState extends State<SignUpPage> {
                               keyboardType: TextInputType.text,
                               cursorColor: Colors.black,
                               obscureText: hidePassword,
+                              /*  onSaved */
+                              controller: passwordController,
+                              validator: (value) {
+                                if (value!.length < 6) {
+                                  return 'Password should be more than 6 characters';
+                                }
+                                return null;
+                              },
                               decoration: new InputDecoration(
                                 enabledBorder: UnderlineInputBorder(
                                     borderSide: BorderSide(
@@ -148,12 +186,35 @@ class _SignUpPageState extends State<SignUpPage> {
                                 primary: Colors.red.shade600, // background
                                 onPrimary: Colors.white, // foreground
                               ),
-                              onPressed: () {
-                                Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) => SignInPage()),
-                                );
+                              onPressed: () async {
+                                if (globalFormKey.currentState!.validate()) {
+                                  var username = unameController.text;
+                                  var email = emailController.text;
+                                  var password = passwordController.text;
+
+                                  setState(() {
+                                    message = 'Please wait...';
+                                  });
+                                  var rsp =
+                                      await register(username, email, password);
+                                  print(rsp);
+                                  if (rsp.containsKey('status')) {
+                                    setState(() {
+                                      message = rsp['status'];
+                                    });
+                                    if (rsp['status'] == 1) {
+                                      Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder: (context) => SignInPage()),
+                                      );
+                                    }
+                                  } else {
+                                    setState(() {
+                                      message = 'Registration Failed';
+                                    });
+                                  }
+                                }
                               },
                               child: Text('SIGN UP'),
                             ),
@@ -162,6 +223,7 @@ class _SignUpPageState extends State<SignUpPage> {
                   ),
                 ),
                 SizedBox(height: 30),
+                Text(message),
                 Container(
                   child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
