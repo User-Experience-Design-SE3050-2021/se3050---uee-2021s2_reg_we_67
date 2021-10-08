@@ -31,7 +31,7 @@ class MyApp extends StatelessWidget {
         accentColor: kAccentColor,
         fontFamily: 'Jaapokki',
       ),
-      home: PaymentDetails(),
+      home: TrackOrder(),
     );
   }
 }
