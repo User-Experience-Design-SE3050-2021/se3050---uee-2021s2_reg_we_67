@@ -2,34 +2,13 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:ueepro/controller/woman_controller.dart';
+import 'package:ueepro/pages/woman/woman.dart';
+import 'package:get/get.dart';
 
 
-class Home extends StatefulWidget {
-  @override
-  _HomeState createState() => _HomeState();
-}
-
-class _HomeState extends State<Home> {
-  final List<String> images = [
-    'https://stylesatlife.com/wp-content/uploads/2018/03/Gown-style-Indian-Frock.jpg',
-    'https://folder.pk/wp-content/uploads/2017/10/Decent-Black-Frock.jpg',
-    'https://sc01.alicdn.com/kf/HTB1EzEjif9TBuNjy1zbq6xpepXa7/229989297/HTB1EzEjif9TBuNjy1zbq6xpepXa7.jpg',
-    'https://i.ytimg.com/vi/jWa9atfXMR0/maxresdefault.jpg',
-    'https://i.ytimg.com/vi/3ajK8glRag4/hqdefault.jpg',
-    'https://i1.wp.com/he.com.pk/wp-content/uploads/2015/01/Net-Frocks-Designs-in-Pakistan-2015-Latest.jpg',
-    'https://stylesatlife.com/wp-content/uploads/2019/01/30-Latest-Models-of-Long-Frocks-with-Images-in-2020.jpg',
-  ];
-  
-  @override
-  void initState() {
-    WidgetsBinding.instance!.addPostFrameCallback((_) {
-      images.forEach((imageUrl) {
-        precacheImage(NetworkImage(imageUrl), context);
-      });
-    });
-    super.initState();
-  }
-  
+class Home extends StatelessWidget {
+  final WomanController apiController = Get.put(WomanController());
 
   @override
   Widget build(BuildContext context) {
@@ -130,14 +109,27 @@ body: Container(
                         ),
     ),
     Container(
-          child: CarouselSlider.builder(
-        itemCount: images.length,
-        options: CarouselOptions(
-          height: 230,
-          autoPlay: true,
-          aspectRatio: 2.0,
+        child:Obx( () {
+        if (apiController.isLoading.value)
+          return Center(child: CircularProgressIndicator());
+          else
+          return Container(
+        alignment: Alignment.center,
+        child: Column(
+          children: [
+    Container(
+           child:CarouselSlider.builder(
+     options: CarouselOptions(
+       height: 230,
+          aspectRatio: 16/9,
+     viewportFraction: 0.8,
+     autoPlay: true,
+    autoPlayInterval: Duration(seconds: 2),
+    reverse: false,
+      autoPlayCurve: Curves.fastOutSlowIn,
         ),
-        itemBuilder: (context, index, realIdx) {
+            itemCount: apiController.womanList.length,
+            itemBuilder: (context, index, realIdx) {
           return Container(
             margin: EdgeInsets.only(top: 20, bottom: 5),
               height: 420,
@@ -177,9 +169,9 @@ body: Container(
                       ),
                       
                     ),
-                     child: ClipRRect(
+                      child: ClipRRect(
             borderRadius: BorderRadius.circular(20),
-                    child: Image.network(images[index],
+                    child: Image.network(apiController.womanList[index].image,
                     fit: BoxFit.cover,
                     ),
                      ), 
@@ -189,14 +181,14 @@ body: Container(
                       top: 140.5,
                       left: 7,
                     ),
-                    child:Text("Frock"),
+                    child:Text(apiController.womanList[index].description),
                   ),
                   Container(
                     margin: EdgeInsets.only(
                       top: 160.5,
                       left: 10,
                     ),
-                    child:Text("Rs.200"),
+                    child:Text(apiController.womanList[index].price),
                   ),
                   Container(
                     margin: EdgeInsets.only(
@@ -222,7 +214,9 @@ body: Container(
                   ),
                 ]));
         },
-      )),
+      )
+      ),
+          ]));})),
       Container(
  margin: EdgeInsets.only(top: 10,right: 175),
  child: Text(
@@ -265,17 +259,27 @@ body: Container(
             fit: BoxFit.cover,
           ), 
                     ),
-                    child:Container(
-                       margin:
-                        EdgeInsets.only(top: 30, right: 5, left: 5),
-                   child:Text(
+                    child: ClipRRect(
+                borderRadius: BorderRadius.circular(20),
+                    child: ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      primary: Colors.transparent,
+                    ),
+                    onPressed: () {
+                     Navigator.of(context).push(MaterialPageRoute(
+                          builder: (context) => Woman()));
+                    },
+                    child:Center(
+                     child: Text(
                       "Woman's Fashion",
                           style: TextStyle(
                             color: Colors.black,
                             fontSize: 18,
                             fontWeight: FontWeight.bold
                           ),
-                   ),),),
+                   ),
+                    ),
+                  ),),),
                         SizedBox(
                           width: 20,
                         ),
@@ -305,17 +309,27 @@ body: Container(
             fit: BoxFit.cover,
           ), 
                     ),
-                    child:Container(
-                       margin:
-                        EdgeInsets.only(top: 30, right: 5, left: 5),
-                   child:Text(
+                    child: ClipRRect(
+                borderRadius: BorderRadius.circular(20),
+                    child: ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      primary: Colors.transparent,
+                    ),
+                    onPressed: () {
+                     Navigator.of(context).push(MaterialPageRoute(
+                          builder: (context) => Woman()));
+                    },
+                    child:Center(
+                     child: Text(
                       "Men's Fashion",
                           style: TextStyle(
                             color: Colors.black,
                             fontSize: 18,
                             fontWeight: FontWeight.bold
                           ),
-                   ),),),
+                   ),
+                    ),
+                  ),),),
                      SizedBox(
                           width: 20,
                         ),
@@ -345,17 +359,27 @@ body: Container(
             fit: BoxFit.cover,
           ), 
                     ),
-                    child:Container(
-                       margin:
-                        EdgeInsets.only(top: 30, right: 5, left: 5),
-                   child:Text(
+                    child: ClipRRect(
+                borderRadius: BorderRadius.circular(20),
+                    child: ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      primary: Colors.transparent,
+                    ),
+                   onPressed: () {
+                     Navigator.of(context).push(MaterialPageRoute(
+                          builder: (context) => Woman()));
+                    },
+                    child:Center(
+                     child: Text(
                       "Kid's Fashion",
                           style: TextStyle(
                             color: Colors.black,
                             fontSize: 18,
                             fontWeight: FontWeight.bold
                           ),
-                   ),),),
+                   ),
+                    ),
+                  ),),),
                       ],
                     ),),
                     SizedBox(height: 15,),
@@ -389,17 +413,27 @@ body: Container(
             fit: BoxFit.cover,
           ), 
                     ),
-                    child:Container(
-                       margin:
-                        EdgeInsets.only(top: 30, right: 5, left: 5),
-                   child:Text(
+                    child: ClipRRect(
+                borderRadius: BorderRadius.circular(20),
+                    child: ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      primary: Colors.transparent,
+                    ),
+                    onPressed: () {
+                     Navigator.of(context).push(MaterialPageRoute(
+                          builder: (context) => Woman()));
+                    },
+                    child:Center(
+                     child: Text(
                       "Health & Beauty",
                           style: TextStyle(
                             color: Colors.black,
                             fontSize: 18,
                             fontWeight: FontWeight.bold
                           ),
-                   ),),),
+                   ),
+                    ),
+                  ),),),
                         SizedBox(
                           width: 20,
                         ),
@@ -429,17 +463,27 @@ body: Container(
             fit: BoxFit.cover,
           ), 
                     ),
-                    child:Container(
-                       margin:
-                        EdgeInsets.only(top: 30, right: 5, left: 5),
-                   child:Text(
+                    child: ClipRRect(
+                borderRadius: BorderRadius.circular(20),
+                    child: ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      primary: Colors.transparent,
+                    ),
+                    onPressed: () {
+                     Navigator.of(context).push(MaterialPageRoute(
+                          builder: (context) => Woman()));
+                    },
+                    child:Center(
+                     child: Text(
                       "Electronical Devices",
                           style: TextStyle(
                             color: Colors.black,
-                            fontSize: 16.5,
+                            fontSize: 18,
                             fontWeight: FontWeight.bold
                           ),
-                   ),),),
+                   ),
+                    ),
+                  ),),),
                      SizedBox(
                           width: 20,
                         ),
@@ -469,17 +513,27 @@ body: Container(
             fit: BoxFit.cover,
           ), 
                     ),
-                    child:Container(
-                       margin:
-                        EdgeInsets.only(top: 28, right: 5, left: 5),
-                   child:Text(
+                    child: ClipRRect(
+                borderRadius: BorderRadius.circular(20),
+                    child: ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      primary: Colors.transparent,
+                    ),
+                    onPressed: () {
+                     Navigator.of(context).push(MaterialPageRoute(
+                          builder: (context) => Woman()));
+                    },
+                    child:Center(
+                     child: Text(
                       "Home & Lifestyle",
                           style: TextStyle(
                             color: Colors.black,
-                            fontSize: 16.5,
+                            fontSize: 18,
                             fontWeight: FontWeight.bold
                           ),
-                   ),),),
+                   ),
+                    ),
+                  ),),),
                       ],
                     ),),
                   
