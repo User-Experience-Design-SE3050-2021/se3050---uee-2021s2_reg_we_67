@@ -124,7 +124,13 @@ class _OtpState extends State<Otp> {
                 primary: Colors.red.shade600, // background
                 onPrimary: Colors.white, // foreground
               ),
-              onPressed: () {},
+              onPressed: () {
+                /* Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => HomePage()),
+                        ); */
+              },
               child: Text('Continue'),
             ),
           ),
