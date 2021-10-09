@@ -42,7 +42,7 @@ class _SignInPageState extends State<SignInPage> {
           Container(
             width: MediaQuery.of(context).size.width,
             height: 170,
-            color: Colors.red[200],
+            color: Colors.red[300],
             child: Stack(children: [
               Column(
                 children: [
@@ -144,7 +144,21 @@ class _SignInPageState extends State<SignInPage> {
                     ),
                   ),
                 ),
-                SizedBox(height: 20),
+                SizedBox(height: 5),
+                Padding(
+                  padding: const EdgeInsets.only(left: 200),
+                  child: InkWell(
+                    child: Text(
+                      'Forgot Password?',
+                      style: TextStyle(
+                          fontSize: 10,
+                          color: Colors.black,
+                          fontWeight: FontWeight.bold),
+                    ),
+                    onTap: () {},
+                  ),
+                ),
+                SizedBox(height: 5),
                 ElevatedButton(
                   style: ElevatedButton.styleFrom(
                     elevation: 3,
@@ -152,7 +166,7 @@ class _SignInPageState extends State<SignInPage> {
                       borderRadius: BorderRadius.circular(20),
                     ),
                     padding:
-                        EdgeInsets.symmetric(horizontal: 110.0, vertical: 12.0),
+                        EdgeInsets.symmetric(horizontal: 110.0, vertical: 10.0),
 
                     primary: Colors.red[600], // background
                     onPrimary: Colors.white, // foreground

@@ -86,14 +86,15 @@ class _PhoneverifyState extends State<Phoneverify> {
                     focusedBorder: UnderlineInputBorder(
                       borderSide: BorderSide(color: Colors.red.shade600),
                     )),
-
-                initialCountryCode: 'SL',
-                //default contry code, NP for Nepal
+                initialCountryCode: '93',
+                countryCodeTextColor: Colors.red.shade600,
+                searchText: 'Choose your country code...',
                 onChanged: (phone) {
                   print(phone.completeNumber); //get complete number
                   print(phone.countryCode); // get country code only
                   print(phone.number); // only phone number
                 },
+                iconPosition: IconPosition.trailing,
               )),
           SizedBox(
             height: 10,
