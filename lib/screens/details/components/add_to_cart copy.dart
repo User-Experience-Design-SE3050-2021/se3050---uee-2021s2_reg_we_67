@@ -41,7 +41,20 @@ class AddToCart1 extends StatelessWidget {
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(18)),
                 color: product.color,
-                onPressed: () {},
+                onPressed: () => showDialog<String>(
+                  context: context,
+                  builder: (BuildContext context) => AlertDialog(
+                    title: const Text('Add To Cart Succefully'),
+                    actions: <Widget>[
+                      Center(
+                        child: TextButton(
+                          onPressed: () => Navigator.pop(context, 'Thanks'),
+                          child: const Text('Happy :)'),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
                 child: Text(
                   "Add To Cart".toUpperCase(),
                   style: TextStyle(

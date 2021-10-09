@@ -28,7 +28,8 @@ dependencies:
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^0.1.3
   flutter_svg: ^0.20.0-nullsafety.3 # it help us to use SVG in our app
-
+  percent_indicator: "^2.1.7+2"
+  
 dev_dependencies:
   flutter_test:
     sdk: flutter

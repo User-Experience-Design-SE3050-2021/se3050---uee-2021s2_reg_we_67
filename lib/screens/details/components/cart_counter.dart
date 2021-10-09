@@ -44,8 +44,8 @@ class _CartCounterState extends State<CartCounter> {
 
   SizedBox buildOutlineButton({IconData icon, Function press}) {
     return SizedBox(
-      width: 40,
-      height: 32,
+      width: 30,
+      height: 24,
       child: OutlineButton(
         padding: EdgeInsets.zero,
         shape: RoundedRectangleBorder(
