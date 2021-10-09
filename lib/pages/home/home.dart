@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:ueepro/pages/woman/access.dart';
-import 'package:ueepro/pages/woman/bag.dart';
-import 'package:ueepro/pages/woman/cloth.dart';
-import 'package:ueepro/pages/woman/shoe.dart';
+import 'bath.dart';
+import 'decor.dart';
+import 'furniture.dart';
+import 'lighting.dart';
 
-class Woman extends StatelessWidget {
+class Home extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
@@ -18,7 +18,7 @@ class Woman extends StatelessWidget {
     Padding(
       padding: EdgeInsets.only(right: 80.0, top: 20),
       child: Container(
-        child: Text("Woman's Fashion",style: TextStyle(
+        child: Text("Home & Lifestyle",style: TextStyle(
                             color: Colors.red[600],
                             fontSize: 22,
                             fontWeight: FontWeight.bold
@@ -70,28 +70,28 @@ class Woman extends StatelessWidget {
                               indicatorColor: Colors.transparent,
                               tabs: <Widget>[
                                 Tab(
-                                  child: Text("Clothing",style: TextStyle(
+                                  child: Text("Furniture",style: TextStyle(
                             color: Colors.black,
                             fontSize: 12,
                             
                           ),),
                                 ),
                                 Tab(
-                                  child: Text("Accessories",style: TextStyle(
+                                  child: Text("Lighting",style: TextStyle(
                             color: Colors.black,
                             fontSize: 12,
                            
                           ),),
                                 ),
                                 Tab(
-                                  child: Text("Shoes",style: TextStyle(
+                                  child: Text("Decor",style: TextStyle(
                             color: Colors.black,
                             fontSize: 12,
                             
                           ),),
                                 ),
                                 Tab(
-                                  child: Text("Bags",style: TextStyle(
+                                  child: Text("Bath",style: TextStyle(
                             color: Colors.black,
                             fontSize: 12,
                             
@@ -106,10 +106,10 @@ class Woman extends StatelessWidget {
                               height: 1700,
                               child: TabBarView(
                                 children: <Widget>[
-                                  WCloth(),
-                                  WAccess(),
-                                  WShoe(),
-                                  WBag(),
+                                  Furniture(),
+                                  Lighting(),
+                                  Decor(),
+                                  Bath(),
                                 ],
                               ),
                             )

@@ -1,40 +1,16 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:ueepro/controller/woman_controller.dart';
 
-class Access extends StatefulWidget {
+class WAccess extends StatefulWidget {
   @override
-  _AccessState createState() => _AccessState();
+  _WAccessState createState() => _WAccessState();
 }
 
-class _AccessState extends State<Access> {
+class _WAccessState extends State<WAccess> {
 
-  // Title List Here
-  var titleList = [
-    "Makeup Brushes",
-    "Lipstick",
-    "Anklet", 
-  ];
-
-  // Description List Here
-  var descList = [
-    "3 brushes",
-    "Red",
-   "Gold",
-   
-  ];
-  var pricList = [
-    "Rs.2000",
-    "Rs.1400",
-    "Rs.1500",
-   
-  ];
-
-  // Image Name List Here
-  var imgList = [
-        "https://static.beautytocare.com/media/catalog/product/cache/global/image/650x650/85e4522595efc69f496374d01ef2bf13/f/l/flormar-makeup-brush-set.jpg",
-        "https://www.paccosmetics.com/wp-content/uploads/2020/05/LPSK_MAT01.main_-2.jpg",
-        "https://m.media-amazon.com/images/I/71obJbT5srL._AC_UL1050_.jpg",
-  ];
+  final WomanController womanController = Get.put(WomanController());
 
   @override
   Widget build(BuildContext context) {
@@ -42,8 +18,17 @@ class _AccessState extends State<Access> {
     double width = MediaQuery.of(context).size.width * 0.6;
     return Scaffold(
       // Main List View With Builder
-      body: ListView.builder(
-        itemCount: imgList.length,
+      body: Container(
+        child:Obx( () {
+        if (womanController.isLoading.value)
+          return Center(child: CircularProgressIndicator());
+          else
+          return Container(
+        alignment: Alignment.center,
+        child: Column(
+          children: [
+      ListView.builder(
+        itemCount: womanController.womanList.length,
         itemBuilder: (context, index) {
           return Card(
             child:Container(
@@ -81,7 +66,7 @@ class _AccessState extends State<Access> {
                         bottomRight: Radius.circular(20),
                       ),
                       image: new DecorationImage(
-            image: new NetworkImage(imgList[index]),
+            image: new NetworkImage(womanController.womanList[index].image,),
             fit: BoxFit.cover,
           ), 
                     ),
@@ -93,7 +78,7 @@ class _AccessState extends State<Access> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: <Widget>[
                         Text(
-                          titleList[index],
+                          womanController.womanList[index].name,
                           style: TextStyle(
                             fontSize: 22,
                             color: Colors.black,
@@ -106,7 +91,7 @@ class _AccessState extends State<Access> {
                         Container(
                           width: width,
                           child: Text(
-                            descList[index],
+                            womanController.womanList[index].description,
                             maxLines: 3,
                             style: TextStyle(
                                 fontSize: 15, color: Colors.black),
@@ -118,7 +103,7 @@ class _AccessState extends State<Access> {
                         Container(
                           width: width,
                           child: Text(
-                            pricList[index],
+                            womanController.womanList[index].price,
                             maxLines: 3,
                             style: TextStyle(
                                 fontSize: 15, color: Colors.black),
@@ -133,6 +118,7 @@ class _AccessState extends State<Access> {
           );
         },
       ),
+          ]));})),
     );
   }
 }

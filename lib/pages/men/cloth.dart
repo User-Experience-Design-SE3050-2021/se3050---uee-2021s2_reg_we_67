@@ -1,15 +1,15 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:ueepro/controller/woman_controller.dart';
+import 'package:ueepro/controller/men_controller.dart';
 
-class WBag extends StatefulWidget {
+class MCloth extends StatefulWidget {
   @override
-  _WBagState createState() => _WBagState();
+  _MClothState createState() => _MClothState();
 }
 
-class _WBagState extends State<WBag> {
-final WomanController womanController = Get.put(WomanController());
+class _MClothState extends State<MCloth> {
+ final MenController menController = Get.put(MenController());
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +19,7 @@ final WomanController womanController = Get.put(WomanController());
       // Main List View With Builder
       body: Container(
         child:Obx( () {
-        if (womanController.isLoading.value)
+        if (menController.isLoading.value)
           return Center(child: CircularProgressIndicator());
           else
           return Container(
@@ -27,7 +27,7 @@ final WomanController womanController = Get.put(WomanController());
         child: Column(
           children: [
       ListView.builder(
-        itemCount: womanController.womanList.length,
+        itemCount: menController.menList.length,
         itemBuilder: (context, index) {
           return Card(
             child:Container(
@@ -65,7 +65,7 @@ final WomanController womanController = Get.put(WomanController());
                         bottomRight: Radius.circular(20),
                       ),
                       image: new DecorationImage(
-            image: new NetworkImage(womanController.womanList[index].image,),
+            image: new NetworkImage(menController.menList[index].image,),
             fit: BoxFit.cover,
           ), 
                     ),
@@ -77,7 +77,7 @@ final WomanController womanController = Get.put(WomanController());
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: <Widget>[
                         Text(
-                          womanController.womanList[index].name,
+                          menController.menList[index].name,
                           style: TextStyle(
                             fontSize: 22,
                             color: Colors.black,
@@ -90,7 +90,7 @@ final WomanController womanController = Get.put(WomanController());
                         Container(
                           width: width,
                           child: Text(
-                            womanController.womanList[index].description,
+                            menController.menList[index].description,
                             maxLines: 3,
                             style: TextStyle(
                                 fontSize: 15, color: Colors.black),
@@ -102,7 +102,7 @@ final WomanController womanController = Get.put(WomanController());
                         Container(
                           width: width,
                           child: Text(
-                            womanController.womanList[index].price,
+                            menController.menList[index].price,
                             maxLines: 3,
                             style: TextStyle(
                                 fontSize: 15, color: Colors.black),

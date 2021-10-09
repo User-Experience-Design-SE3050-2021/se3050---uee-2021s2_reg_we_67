@@ -1,15 +1,16 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:ueepro/controller/woman_controller.dart';
+import 'package:ueepro/controller/beauty_controller.dart';
 
-class WBag extends StatefulWidget {
+
+class Fragrance extends StatefulWidget {
   @override
-  _WBagState createState() => _WBagState();
+  _FragranceState createState() => _FragranceState();
 }
 
-class _WBagState extends State<WBag> {
-final WomanController womanController = Get.put(WomanController());
+class _FragranceState extends State<Fragrance> {
+final BeautyController beautyController = Get.put(BeautyController());
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +20,7 @@ final WomanController womanController = Get.put(WomanController());
       // Main List View With Builder
       body: Container(
         child:Obx( () {
-        if (womanController.isLoading.value)
+        if (beautyController.isLoading.value)
           return Center(child: CircularProgressIndicator());
           else
           return Container(
@@ -27,7 +28,7 @@ final WomanController womanController = Get.put(WomanController());
         child: Column(
           children: [
       ListView.builder(
-        itemCount: womanController.womanList.length,
+        itemCount: beautyController.beautyList.length,
         itemBuilder: (context, index) {
           return Card(
             child:Container(
@@ -65,7 +66,7 @@ final WomanController womanController = Get.put(WomanController());
                         bottomRight: Radius.circular(20),
                       ),
                       image: new DecorationImage(
-            image: new NetworkImage(womanController.womanList[index].image,),
+            image: new NetworkImage(beautyController.beautyList[index].image,),
             fit: BoxFit.cover,
           ), 
                     ),
@@ -77,7 +78,7 @@ final WomanController womanController = Get.put(WomanController());
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: <Widget>[
                         Text(
-                          womanController.womanList[index].name,
+                          beautyController.beautyList[index].name,
                           style: TextStyle(
                             fontSize: 22,
                             color: Colors.black,
@@ -90,7 +91,7 @@ final WomanController womanController = Get.put(WomanController());
                         Container(
                           width: width,
                           child: Text(
-                            womanController.womanList[index].description,
+                            beautyController.beautyList[index].description,
                             maxLines: 3,
                             style: TextStyle(
                                 fontSize: 15, color: Colors.black),
@@ -102,7 +103,7 @@ final WomanController womanController = Get.put(WomanController());
                         Container(
                           width: width,
                           child: Text(
-                            womanController.womanList[index].price,
+                            beautyController.beautyList[index].price,
                             maxLines: 3,
                             style: TextStyle(
                                 fontSize: 15, color: Colors.black),

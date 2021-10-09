@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:ueepro/pages/woman/access.dart';
-import 'package:ueepro/pages/woman/bag.dart';
-import 'package:ueepro/pages/woman/cloth.dart';
-import 'package:ueepro/pages/woman/shoe.dart';
+import 'package:ueepro/pages/men/shoe.dart';
+import 'access.dart';
+import 'bag.dart';
+import 'cloth.dart';
 
-class Woman extends StatelessWidget {
+class Men extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
@@ -18,7 +18,7 @@ class Woman extends StatelessWidget {
     Padding(
       padding: EdgeInsets.only(right: 80.0, top: 20),
       child: Container(
-        child: Text("Woman's Fashion",style: TextStyle(
+        child: Text("Men's Fashion",style: TextStyle(
                             color: Colors.red[600],
                             fontSize: 22,
                             fontWeight: FontWeight.bold
@@ -106,10 +106,10 @@ class Woman extends StatelessWidget {
                               height: 1700,
                               child: TabBarView(
                                 children: <Widget>[
-                                  WCloth(),
-                                  WAccess(),
-                                  WShoe(),
-                                  WBag(),
+                                  MCloth(),
+                                  MAccess(),
+                                  MShoe(),
+                                  MBag(),
                                 ],
                               ),
                             )

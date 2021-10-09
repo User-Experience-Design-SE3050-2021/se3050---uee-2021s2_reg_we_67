@@ -8,7 +8,7 @@ import 'package:get/get.dart';
 
 
 class Home extends StatelessWidget {
-  final WomanController apiController = Get.put(WomanController());
+  final WomanController womanController = Get.put(WomanController());
 
   @override
   Widget build(BuildContext context) {
@@ -110,7 +110,7 @@ body: Container(
     ),
     Container(
         child:Obx( () {
-        if (apiController.isLoading.value)
+        if (womanController.isLoading.value)
           return Center(child: CircularProgressIndicator());
           else
           return Container(
@@ -128,7 +128,7 @@ body: Container(
     reverse: false,
       autoPlayCurve: Curves.fastOutSlowIn,
         ),
-            itemCount: apiController.womanList.length,
+            itemCount: womanController.womanList.length,
             itemBuilder: (context, index, realIdx) {
           return Container(
             margin: EdgeInsets.only(top: 20, bottom: 5),
@@ -171,7 +171,7 @@ body: Container(
                     ),
                       child: ClipRRect(
             borderRadius: BorderRadius.circular(20),
-                    child: Image.network(apiController.womanList[index].image,
+                    child: Image.network(womanController.womanList[index].image,
                     fit: BoxFit.cover,
                     ),
                      ), 
@@ -181,14 +181,14 @@ body: Container(
                       top: 140.5,
                       left: 7,
                     ),
-                    child:Text(apiController.womanList[index].description),
+                    child:Text(womanController.womanList[index].description),
                   ),
                   Container(
                     margin: EdgeInsets.only(
                       top: 160.5,
                       left: 10,
                     ),
-                    child:Text(apiController.womanList[index].price),
+                    child:Text(womanController.womanList[index].price),
                   ),
                   Container(
                     margin: EdgeInsets.only(

@@ -1,52 +1,15 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:ueepro/controller/woman_controller.dart';
 
-class Cloth extends StatefulWidget {
+class WCloth extends StatefulWidget {
   @override
-  _ClothState createState() => _ClothState();
+  _WClothState createState() => _WClothState();
 }
 
-class _ClothState extends State<Cloth> {
-  // Title List Here
-  var titleList = [
-    "Frock",
-    "Blouse",
-    "Frock",
-    "Saree",
-    "Saree",
-    "Skirt",
-    
-  ];
-
-  // Description List Here
-  var descList = [
-    "Long",
-    "Long Sleeve",
-    "Short",
-    "Pink",
-    "Red",
-    "Long",
-   
-  ];
-  var pricList = [
-    "Rs.4000",
-    "Rs.1900",
-    "Rs.2500",
-    "Rs.7600",
-    "Rs.9870",
-    "Rs.1580",
-   
-  ];
-
-  // Image Name List Here
-  var imgList = [
-        "https://assets.myntassets.com/dpr_1.5,q_60,w_400,c_limit,fl_progressive/assets/images/12491462/2020/9/28/7a05609a-85f7-485d-b62d-fbe3fb19c4291601286030626-Inddus-Women-Dresses-521601286027105-1.jpg",
-        "https://image.made-in-china.com/202f0j00uIFUlgTtVCkH/2020-Autumn-Ladies-Tops-Flower-Print-Shirt-Women-Long-Sleeve-Clothes-T-Shirt-Round-Neck-Bandage-Fashion-Blouse.webp",
-        "https://images.unsplash.com/photo-1617922001439-4a2e6562f328?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8d29tZW4lMjBmYXNoaW9ufGVufDB8fDB8fA%3D%3D&ixlib=rb-1.2.1&w=1000&q=80",
-        "https://3.imimg.com/data3/EE/FH/MY-986021/ladies-designer-sarees-500x500.jpg",
-        "https://images.unsplash.com/photo-1618901185975-d59f7091bcfe?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=870&q=80",
-        "https://www.dhresource.com/0x0/f2/albu/g3/M00/7D/B7/rBVaHFa674yAZfNzAAnZdFgb36g339.jpg"
-  ];
+class _WClothState extends State<WCloth> {
+ final WomanController womanController = Get.put(WomanController());
 
   @override
   Widget build(BuildContext context) {
@@ -54,8 +17,17 @@ class _ClothState extends State<Cloth> {
     double width = MediaQuery.of(context).size.width * 0.6;
     return Scaffold(
       // Main List View With Builder
-      body: ListView.builder(
-        itemCount: imgList.length,
+      body: Container(
+        child:Obx( () {
+        if (womanController.isLoading.value)
+          return Center(child: CircularProgressIndicator());
+          else
+          return Container(
+        alignment: Alignment.center,
+        child: Column(
+          children: [
+      ListView.builder(
+        itemCount: womanController.womanList.length,
         itemBuilder: (context, index) {
           return Card(
             child:Container(
@@ -93,7 +65,7 @@ class _ClothState extends State<Cloth> {
                         bottomRight: Radius.circular(20),
                       ),
                       image: new DecorationImage(
-            image: new NetworkImage(imgList[index]),
+            image: new NetworkImage(womanController.womanList[index].image,),
             fit: BoxFit.cover,
           ), 
                     ),
@@ -105,7 +77,7 @@ class _ClothState extends State<Cloth> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: <Widget>[
                         Text(
-                          titleList[index],
+                          womanController.womanList[index].name,
                           style: TextStyle(
                             fontSize: 22,
                             color: Colors.black,
@@ -118,7 +90,7 @@ class _ClothState extends State<Cloth> {
                         Container(
                           width: width,
                           child: Text(
-                            descList[index],
+                            womanController.womanList[index].description,
                             maxLines: 3,
                             style: TextStyle(
                                 fontSize: 15, color: Colors.black),
@@ -130,7 +102,7 @@ class _ClothState extends State<Cloth> {
                         Container(
                           width: width,
                           child: Text(
-                            pricList[index],
+                            womanController.womanList[index].price,
                             maxLines: 3,
                             style: TextStyle(
                                 fontSize: 15, color: Colors.black),
@@ -145,6 +117,7 @@ class _ClothState extends State<Cloth> {
           );
         },
       ),
+          ]));})),
     );
   }
 }
